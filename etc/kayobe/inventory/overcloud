@@ -18,10 +18,6 @@ cpu-e-1043 ipmi_address=10.202.0.32 bmc_type=idrac
 [compute:children]
 compute-preprod
 
-# TODO: split out network once we get net2 online
-#[network]
-#net1 ipmi_address=10.202.0.4 bmc_type=idrac
-#net2 ipmi_address=10.202.0.7 bmc_type=idrac
 [network:children]
 controllers
 
@@ -29,3 +25,13 @@ controllers
 cpu-e-1041 ipmi_address=10.202.0.30 bmc_type=idrac
 
 [storage]
+
+[switches:children]
+hs-switches
+ctl-switches
+
+[hs-switches]
+ethsw-dr17-u41
+
+[ctl-switches]
+ethsw-dr17-u37

@@ -31,16 +31,31 @@
 
 # List of of default inspector processing plugins.
 #inspector_processing_hooks_default:
+inspector_processing_hooks_default:
+  - ramdisk_error
+  - validate_interfaces
+  - capabilities
+  - pci_devices
+  - local_link_connection
+  - lldp_basic
 
 # List of of additional inspector processing plugins.
-#inspector_processing_hooks_extra:
+inspector_processing_hooks_extra:
+  # Adds switch system name to ironic port local_link_connection.
+  - system_name_llc
+  # Assigns physical_network to ironic port based on switch system name.
+  - system_name_physnet
+  # Processes additional inventory data collected by the extra-hardware
+  # collector.
+  - extra_hardware
+
 
 # List of of additional inspector processing plugins.
 #inspector_processing_hooks:
 
 # Which MAC addresses to add as ports during introspection. One of 'all',
 # 'active' or 'pxe'.
-#inspector_add_ports:
+inspector_add_ports: all
 
 # Which ports to keep after introspection. One of 'all', 'present', or 'added'.
 #inspector_keep_ports:
@@ -66,7 +81,8 @@
 
 # Ironic inspector map from hostname to network interface name on which to
 # check for an LLDP switch port description to use as the node's name.
-#inspector_lldp_switch_port_interface_map:
+inspector_lldp_switch_port_interface_map:
+  cpu-e-1044: eno16
 
 ###############################################################################
 # Ironic inspector introspection rules configuration.
@@ -122,7 +138,7 @@
 
 # Ansible group containing switch hosts to which the workaround should be
 # applied.
-#inspector_dell_switch_lldp_workaround_group:
+#inspector_dell_switch_lldp_workaround_group: "ctl-switches"
 
 ###############################################################################
 # Inspection store configuration.

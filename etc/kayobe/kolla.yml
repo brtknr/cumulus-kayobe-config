@@ -138,6 +138,7 @@ kolla_build_customizations:
   neutron_server_packages_append:
     # Allow custom packages to be installed via pip.
     - 'python-pip'
+    - 'python-networking-generic-switch'
   horizon_packages_append:
     # Allow custom packages to be installed via pip.
     - 'python-pip'
@@ -261,7 +262,7 @@ kolla_enable_neutron_provider_networks: True
 #kolla_enable_neutron_segments:
 #kolla_enable_neutron_sriov:
 #kolla_enable_neutron_vpnaas:
-#kolla_enable_nova_serialconsole_proxy:
+kolla_enable_nova_serialconsole_proxy: True
 #kolla_enable_octavia:
 #kolla_enable_osprofiler:
 #kolla_enable_panko:

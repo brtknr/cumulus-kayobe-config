@@ -1,0 +1,64 @@
+---
+- name: Fix-up OVS state
+  hosts: compute
+  become: yes
+  gather_facts: no
+  tasks:
+  - name: Stop services on compute
+    docker_container:
+      name: "{{ item }}"
+      state: stopped
+    with_items:
+      - nova_compute
+      - nova_libvirt
+      - neutron_openvswitch_agent
+      - openvswitch_db
+      - openvswitch_vswitchd
+    tags: ovs_compute
+
+  - name: Start services on compute
+    docker_container:
+      name: "{{ item }}"
+      state: started
+    with_items:
+      - nova_compute
+      - nova_libvirt
+      - neutron_openvswitch_agent
+      - openvswitch_db
+      - openvswitch_vswitchd
+    tags: ovs_compute
+
+- name: Fix-up OVS state
+  hosts: controllers
+  become: yes
+  gather_facts: no
+  tasks:
+  - name: Stop services on controllers
+    docker_container:
+      name: "{{ item }}"
+      state: stopped
+    with_items:
+      - neutron_openvswitch_agent
+      - neutron_metadata_agent
+      - neutron_l3_agent
+      - neutron_dhcp_agent
+      - ironic_neutron_agent
+      - neutron_server
+      - openvswitch_db
+      - openvswitch_vswitchd
+    tags: ovs_controllers
+
+  - name: Start services on controllers
+    docker_container:
+      name: "{{ item }}"
+      state: started
+    with_items:
+      - openvswitch_db
+      - openvswitch_vswitchd
+      - neutron_server
+      - neutron_openvswitch_agent
+      - neutron_metadata_agent
+      - neutron_l3_agent
+      - neutron_dhcp_agent
+      - ironic_neutron_agent
+    tags: ovs_controllers

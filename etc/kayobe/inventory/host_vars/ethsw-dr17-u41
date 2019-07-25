@@ -1,0 +1,21 @@
+---
+# Switch configuration for ethsw-dr17-u41
+
+# This switch is a 25/50/100G Dell Z9100-ON, and provides the High Speed Ethernet
+# network
+
+###############################################################################
+# Switch credentials.
+
+# Host/IP on which to access the switch via SSH.
+ansible_host: 10.200.4.251
+
+# The type of switch used for the control and provisioning network.
+switch_type: dellos9
+
+###############################################################################
+
+switch_interface_config:
+  Tw1/12/1:
+    description: cpu-e-1044
+    config: "{{ switch_interface_config_all }}"

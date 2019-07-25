@@ -16,7 +16,8 @@
 #kolla_ironic_default_boot_interface:
 
 # Specify the list of console interfaces to load during service initialization.
-#kolla_ironic_enabled_console_interfaces:
+kolla_ironic_enabled_console_interfaces:
+  - ipmitool-socat
 
 # Default console interface to be used for nodes that do not have
 # console_interface field set.
@@ -92,10 +93,10 @@
 #kolla_ironic_default_boot_option:
 
 # Name of the Neutron network to use for cleaning.
-#kolla_ironic_cleaning_network:
+kolla_ironic_cleaning_network: cleaning-net
 
 # Name of the Neutron network to use for provisioning.
-#kolla_ironic_provisioning_network:
+kolla_ironic_provisioning_network: provisioning-net
 
 # List of default kernel parameters to append for baremetal PXE boot.
 #kolla_ironic_pxe_append_params_default:

@@ -218,10 +218,11 @@ bond0_net_bond_downdelay: 200
 # TODO: map above to physical networks
 
 # High Speed (25Gb) Ethernet network
-hs_eth_physical_network: physnet1
+hs_eth_physical_network: physnet2
 # 1G Ethernet management network
 # Only used for management and pxe
-mgmt_physical_network: physnet2
+mgmt_physical_network: physnet1
+cp_physical_network: physnet1
 # Low latency (100G OPA) network
 # Not currently used at all
 lln_physical_network: physnet3

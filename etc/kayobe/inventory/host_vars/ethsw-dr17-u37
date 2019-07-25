@@ -1,0 +1,47 @@
+---
+# Switch configuration for ethsw-dr17-u37
+
+# This switch is a 1/10G Dell S3048-ON, and provides the control, provisioning
+# and management networks
+
+###############################################################################
+# Switch credentials.
+
+# Host/IP on which to access the switch via SSH.
+ansible_host: 10.200.4.252
+
+# The type of switch used for the control and provisioning network.
+switch_type: dellos9
+
+###############################################################################
+
+switch_interface_config:
+  Gi1/13:
+    description: cpu-e-1044
+    config: "{{ switch_interface_config_all }}"
+  vlan 311:
+    description: IRIS-Test-311-Prov
+    config:
+      - "no shutdown"
+
+# Interface configuration for enabling hardware discovery. After discovery
+# Neutron owns the configuration of these ports. Has the same format as
+# switch_interface_config.
+switch_interface_config_enable_discovery:
+  vlan 311:
+    description: provisioning
+    # Compute nodes.
+    config: >
+      {{ switch_interface_config['vlan 311'].config +
+         ['untagged Gi 1/13'] }}
+
+# Interface configuration for disabling hardware discovery. After discovery
+# Neutron owns the configuration of these ports. Has the same format as
+# switch_interface_config.
+switch_interface_config_disable_discovery:
+  vlan 311:
+    description: provisioning
+    # Compute nodes.
+    config: >
+      {{ switch_interface_config['vlan 311'].config +
+         ['no untagged Gi 1/13'] }}
