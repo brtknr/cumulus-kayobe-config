@@ -207,6 +207,7 @@ oob_oc_net_mtu: 1500
 ilab_net_mtu: 1500
 
 # TODO: we want these to be 9000
+cp_net_mtu: 1500
 br_net_mtu: 1500
 bond0_net_mtu: 1500
 bond0_net_bond_mode: "802.3ad"
