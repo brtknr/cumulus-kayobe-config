@@ -352,6 +352,11 @@ firewallgen_ipv4_input_allow_rules:
     port: 6080
     proto: tcp
     destination: "{{ internal_net_name | net_ip }}"
+    comment: "novnc console proxy (internal)"
+  - interface: "{{ internal_net_name | net_interface }}"
+    port: 6083
+    proto: tcp
+    destination: "{{ internal_net_name | net_ip }}"
     comment: "serial console proxy (internal)"
   - interface: "{{ internal_net_name | net_interface }}"
     port: 9191
@@ -451,7 +456,12 @@ firewallgen_ipv4_input_allow_rules:
   - interface: "{{ public_net_name | net_interface }}"
     port: 6080
     proto: tcp
-    destination: "{{ public_net_name | net_ip }}"
+    destination: "{{ public_net_name | net_vip_address }}"
+    comment: "novnc console proxy (public)"
+  - interface: "{{ public_net_name | net_interface }}"
+    port: 6083
+    proto: tcp
+    destination: "{{ public_net_name | net_vip_address }}"
     comment: "serial console proxy (public)"
   - interface: "all"
     port: 9094
