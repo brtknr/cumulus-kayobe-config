@@ -68,7 +68,18 @@ controller_network_interfaces: >
 
 # List of controller volume groups. See mrlesmithjr.manage-lvm role for
 # format.
-controller_lvm_groups: []
+controller_lvm_groups:
+  - vgname: docker-volumes
+    disks:
+      - /dev/sdb
+    create: true
+    lvnames:
+      - lvname: docker-volumes-0
+        size: "100%FREE"
+        create: true
+        mount: true
+        filesystem: ext4
+        mntp: /var/lib/docker/volumes
 
 # Default list of controller volume groups. See mrlesmithjr.manage-lvm role for
 # format.
