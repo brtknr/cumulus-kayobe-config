@@ -79,6 +79,7 @@ monasca_tag: 7.0.1.10
 monasca_notification_tag: 7.0.1.10
 monasca_persister_tag: 7.0.1.10
 neutron_tag: 7.0.1.10
+neutron_lbaas_agent_tag: stein
 nova_tag: 7.0.1.10
 openvswitch_tag: 7.0.1.10
 prometheus_tag: 7.0.1.10
@@ -105,3 +106,6 @@ octavia_api_image: "{% raw %}kolla/{{ kolla_base_distro }}-{{ octavia_install_ty
 octavia_housekeeping_image: "{% raw %}kolla/{{ kolla_base_distro }}-{{ octavia_install_type }}-octavia-housekeeping{% endraw %}"
 octavia_worker_image: "{% raw %}kolla/{{ kolla_base_distro }}-{{ octavia_install_type }}-octavia-worker{% endraw %}"
 octavia_health_manager_image: "{% raw %}kolla/{{ kolla_base_distro }}-{{ octavia_install_type }}-octavia-health-manager{% endraw %}"
+
+# Use upstream neutron images for these
+neutron_lbaas_agent_image: "{% raw %}kolla/{{ kolla_base_distro }}-{{ neutron_install_type }}-neutron-lbaas-agent{% endraw %}"
